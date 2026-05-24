@@ -2,6 +2,7 @@ package com.example.biblioteca.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AutoreController {
 
-    private final AutoreService autoreService;
+    @Autowired
+    private AutoreService autoreService;
 
     @GetMapping
     public ResponseEntity<List<AutoreDto>> getAll() {

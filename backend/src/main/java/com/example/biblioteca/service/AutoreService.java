@@ -2,6 +2,7 @@ package com.example.biblioteca.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +22,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AutoreService {
 
-    private final AutoreRepository autoreRepository;
-    private final AutoreMapper autoreMapper;
+    @Autowired
+    private AutoreRepository autoreRepository;
+
+    @Autowired
+    private AutoreMapper autoreMapper;
 
     @Transactional(readOnly = true)
     public List<AutoreDto> findAll() {

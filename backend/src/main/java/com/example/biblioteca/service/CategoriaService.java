@@ -2,6 +2,7 @@ package com.example.biblioteca.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +23,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CategoriaService {
 
-    private final CategoriaRepository categoriaRepository;
-    private final CategoriaMapper categoriaMapper;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private CategoriaMapper categoriaMapper;
 
     @Transactional(readOnly = true)
     public List<CategoriaDto> findAll() {

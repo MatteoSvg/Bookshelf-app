@@ -2,6 +2,7 @@ package com.example.biblioteca.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +25,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PrestitoService {
 
-    private final PrestitoRepository prestitoRepository;
-    private final LibroRepository libroRepository;
-    private final PrestitoMapper prestitoMapper;
+    @Autowired
+    private PrestitoRepository prestitoRepository;
+
+    @Autowired
+    private LibroRepository libroRepository;
+
+    @Autowired
+    private PrestitoMapper prestitoMapper;
 
     @Transactional(readOnly = true)
     public List<PrestitoDto> findAll() {
