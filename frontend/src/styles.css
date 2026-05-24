@@ -1,0 +1,8 @@
+/*
+ * Lo stile dei componenti e' realizzato con le classi Bootstrap
+ * scritte inline nei template HTML dei componenti.
+ * Questo file contiene solo qualche regola globale minima.
+ */
+body {
+  background-color: #f5f6f8;
+}

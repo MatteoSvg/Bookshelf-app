@@ -1,0 +1,109 @@
+<h2 class="mb-3">📖 Libri</h2>
+
+@if (errore) {
+<div class="alert alert-danger">{{ errore }}</div>
+}
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light fw-semibold">
+        {{ inModifica ? 'Modifica libro' : 'Nuovo libro' }}
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-12 col-md-6">
+                <label class="form-label">Titolo</label>
+                <input class="form-control" [(ngModel)]="form.titolo" placeholder="Es. Il barone rampante" />
+            </div>
+            <div class="col-12 col-md-3">
+                <label class="form-label">ISBN</label>
+                <input class="form-control" [(ngModel)]="form.isbn" placeholder="978..." />
+            </div>
+            <div class="col-12 col-md-3">
+                <label class="form-label">Anno pubblicazione</label>
+                <input type="number" class="form-control" [(ngModel)]="form.annoPubblicazione" placeholder="Es. 1957" />
+            </div>
+            <div class="col-12 col-md-5">
+                <label class="form-label">Autore</label>
+                <select class="form-select" [(ngModel)]="form.autoreId">
+                    <option [ngValue]="0" disabled>-- Seleziona autore --</option>
+                    @for (a of autori; track a.id) {
+                    <option [ngValue]="a.id">{{ a.nome }} {{ a.cognome }}</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-md-5">
+                <label class="form-label">Categoria</label>
+                <select class="form-select" [(ngModel)]="form.categoriaId">
+                    <option [ngValue]="0" disabled>-- Seleziona categoria --</option>
+                    @for (c of categorie; track c.id) {
+                    <option [ngValue]="c.id">{{ c.nome }}</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-md-2 d-flex align-items-end">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="disp" [(ngModel)]="form.disponibile" />
+                    <label class="form-check-label" for="disp">Disponibile</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-white text-end">
+        @if (inModifica) {
+        <button class="btn btn-secondary me-2" (click)="annulla()">Annulla</button>
+        }
+        <button class="btn btn-primary" (click)="salva()">
+            {{ inModifica ? 'Salva modifiche' : 'Aggiungi' }}
+        </button>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0 align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width:70px">ID</th>
+                    <th>Titolo</th>
+                    <th>Autore</th>
+                    <th>Categoria</th>
+                    <th>Anno</th>
+                    <th>Stato</th>
+                    <th class="text-end" style="width:170px">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (l of libri; track l.id) {
+                <tr>
+                    <td>{{ l.id }}</td>
+                    <td class="fw-semibold">{{ l.titolo }}</td>
+                    <td>{{ l.autoreNomeCompleto }}</td>
+                    <td>{{ l.categoriaNome }}</td>
+                    <td>{{ l.annoPubblicazione || '-' }}</td>
+                    <td>
+                        @if (l.disponibile) {
+                        <span class="badge text-bg-success">Disponibile</span>
+                        } @else {
+                        <span class="badge text-bg-secondary">In prestito</span>
+                        }
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-primary me-1" (click)="modifica(l)">
+                            Modifica
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" (click)="elimina(l.id!)">
+                            Elimina
+                        </button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                        Nessun libro presente.
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
