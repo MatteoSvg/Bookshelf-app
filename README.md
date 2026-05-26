@@ -1,7 +1,4 @@
-# Gestione Biblioteca — Progetto Fullstack di Esempio
-
-Progetto fullstack di esempio pensato come **template per una prova d'esame da 6 ore**.
-Stack: **Angular 21** (frontend) + **Spring Boot 4.0.5** (backend) + **H2 in-memory** (database).
+# Gestione Biblioteca — Progetto Fullstack
 
 Il dominio è una semplice gestione di una biblioteca con **4 entità**:
 
@@ -9,9 +6,6 @@ Il dominio è una semplice gestione di una biblioteca con **4 entità**:
 - **Autore** — autore del libro
 - **Libro** — il libro (ManyToOne → Autore, ManyToOne → Categoria)
 - **Prestito** — prestito di un libro (ManyToOne → Libro)
-
-Nessuna autenticazione.
-
 ---
 
 ## Struttura del progetto
@@ -115,7 +109,6 @@ Gli stessi 5 endpoint sono disponibili per `/api/autori`, `/api/libri`,
 ## Tecnologie
 
 **Backend**: Spring Boot 4.0.5, Spring Data JPA, Hibernate, H2, Lombok,
-MapStruct 1.6.3, Bean Validation.
+MapStruct 1.6.3
 
-**Frontend**: Angular 21 (componenti standalone, nuovo control flow `@if`/`@for`),
-HttpClient, form template-driven, Bootstrap 5.3.
+**Frontend**: Angular 21 e Bootstrap 5.3.
